@@ -1,0 +1,8 @@
+((synopsis "unveil(2) support for CHICKEN")
+ (version "0.1")
+ (license "ISC")
+ (category os)
+ (author "Wolfgang Corcoran-Mathe")
+ (maintainer "Wolfgang Corcoran-Mathe")
+ (components
+  (extension unveil)))
