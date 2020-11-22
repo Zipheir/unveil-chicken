@@ -10,17 +10,18 @@
 
 (define (unveil path permissions)
   (unless (zero? (c-unveil path permissions))
-    (handle-unveil-error)))
+    (handle-unveil-error path permissions)))
 
 (define (unveil-lock)
   (unless (zero? (c-unveil #f #f))
-    (handle-unveil-error)))
+    (handle-unveil-error #f #f)))
 
-(define (handle-unveil-error)
+(define (handle-unveil-error . irritants)
   (let ((desc `((,errno/2big .  "per-process unveil limit exceeded")
                 (,errno/noent . "unreadable path")
                 (,errno/inval . "invalid permission string")
                 (,errno/perm  . "access violation or unveil already locked"))))
-    (error (cond ((assv _errno desc) => cdr)
+    (apply error
+           (cond ((assv _errno desc) => cdr)
                  (else "(unknown error)"))
-           _errno)))
+           irritants)))
