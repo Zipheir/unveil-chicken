@@ -18,7 +18,7 @@
   (let ((desc `((,errno/2big .  "per-process unveil limit exceeded")
                 (,errno/noent . "unreadable path")
                 (,errno/inval . "invalid permission string")
-                (,errno/eperm . "access violation or unveil already locked")))
+                (,errno/perm  . "access violation or unveil already locked")))
         (err (errno)))
     (error (cond ((assv err desc) => cdr)
                  (else "(unknown error)"))
