@@ -2,7 +2,8 @@
   (unveil unveil-lock)
 
   (import (scheme)
-          (only (chicken base) declare include)
+          (only (chicken base) declare include error unless)
+          (chicken errno)
           (chicken foreign))
 
   (declare (disable-interrupts))
