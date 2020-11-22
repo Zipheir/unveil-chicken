@@ -1,5 +1,5 @@
 (foreign-declare "#include <unistd.h>")
-(foreign-declare "#include <errno.h")
+(foreign-declare "#include <errno.h>")
 
 (define-foreign-variable errno/2big int "E2BIG")
 
