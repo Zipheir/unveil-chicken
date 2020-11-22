@@ -17,10 +17,10 @@
     (handle-unveil-error #f #f)))
 
 (define (handle-unveil-error . irritants)
-  (let ((desc `((,errno/2big .  "per-process unveil limit exceeded")
-                (,errno/noent . "unreadable path")
-                (,errno/inval . "invalid permission string")
-                (,errno/perm  . "access violation or unveil already locked"))))
+  (let ((desc `((,errno/2big .  "unveil: per-process unveil limit exceeded")
+                (,errno/noent . "unveil: unreadable path")
+                (,errno/inval . "unveil: invalid permission string")
+                (,errno/perm  . "unveil: access violation"))))
     (apply error
            (cond ((assv _errno desc) => cdr)
                  (else "(unknown error)"))
